@@ -15,7 +15,7 @@ ESERCIZIO 3) Crea un selettore per selezionare il link "Continua a leggere" del 
 ESERCIZIO 4) Crea un selettore per selezionare il primo blog post Y
 ESERCIZIO 5) Crea un selettore per selezionare l'<hr> del primo blog post e colorarlo di rosso Y
 ESERCIZIO 6) Crea un selettore per selezionare i link pari della navbar Y
-ESERCIZIO 7) Crea un selettore per selezionare tutti gli <li> della prima "ordered-list" della sidebar ("Archivio")
+ESERCIZIO 7) Crea un selettore per selezionare tutti gli <li> della prima "ordered-list" della sidebar ("Archivio") Y
 ESERCIZIO 8) Crea un selettore per selezionare l'autore del secondo blog post Y
 ESERCIZIO 9) Crea un selettore per selezionare il secondo <li> della lista del terzo blog post Y
 ESERCIZIO 10) Crea un selettore per selezionare il link "Torna su" che trovi a fondo pagina nell'angolo in basso a destra Y
@@ -80,9 +80,6 @@ ESERCIZIO 12) Crea un selettore per selezionare il secondo link del footer
       }
       /*da completare*/
       .blog-sidebar .p-4:nth-child(2) ol:first-of-type li a {
-        background-color: black;
-        color: red;
-        font-size: 5px;
       }
 
       .blog-main .blog-post:nth-child(3) {
@@ -101,6 +98,11 @@ ESERCIZIO 12) Crea un selettore per selezionare il secondo link del footer
       }
       footer a:nth-child(2) {
       }
+
+      main .blog-post :nth-child(2) a {
+        background-color: yellowgreen;
+      }
+      /*CLASSI X JS*/
     </style>
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet" />
   </head>
@@ -379,10 +381,29 @@ ESERCIZIO 12) Crea un selettore per selezionare il secondo link del footer
     <a href="#" class="float-right mb-3 mr-3">Torna su</a>
     <script>
       /* JS Exercises should go here */
-
       // EXTRA Crea con JavaScript la funzionalità per rimuovere il link "twitter" sotto alla sezione "Altro" nell'elemento "aside". Deve avvenire al caricamento della pagina, automticamente.
+      function deleteLink() {
+        let link = document.querySelector(".blog-sidebar .p-4:last-of-type ol li:nth-child(2) a");
+        link.removeAttribute("href");
+      }
+      deleteLink();
+
       // EXTRA Crea con JavaScript la funzionalità per rimuovere il corrispondente elemento padre dal DOM cliccando sul link "Continua a leggere".
+      let delContinua = document.querySelector(".jumbotron a:last-of-type");
+
+      delContinua.addEventListener("click", function () {
+        document.querySelector(".jumbotron ").remove();
+      });
+
       // EXTRA Crea con JavaScript la funzionalità per creare un alert col nome dell'autore ogni volta che il cursore passa sopra l'autore del post.
+
+      let autorLink = document.querySelectorAll("main .blog-post :nth-child(2) a ");
+      function autore(e) {
+        alert("Ciao, sei sopra " + e.target.innerText);
+      }
+      for (let i = 0; i < autorLink.length; i++) {
+        autorLink[i].addEventListener("mouseover", autore);
+      }
     </script>
   </body>
 </html>
